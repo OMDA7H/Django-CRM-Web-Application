@@ -14,4 +14,6 @@ A **Customer Relationship Management (CRM)** web application built with **Django
 ## 🛠️ Tech Stack  
 - **Backend:** Django (Python)  
 - **Frontend:** HTML, CSS, Bootstrap, JS  
-- **Authentication:** Django built-in auth system   
+- **Authentication:** Django built-in auth system  
+- **Messages:** Django built-in messages  
+
