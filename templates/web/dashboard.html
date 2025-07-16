@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+{%block content%}
+&nbsp;
+&nbsp;
+&nbsp;
+
+<h1>Welcome to the dashboard <b>{{user}}!</b></h1>
+<hr style="border: 1px solid crimson; margin: 30px 20px;">
+<a href="{% url 'create-record' %}" class="btn btn-outline-primary" style="margin-left: 30px;">Create Record <i class="fa fa-plus" aria-hidden="true"></i></a>
+<hr style="border: 1px solid crimson; margin: 30px 20px;">
+
+{% include 'parts/alerts.html'%}
+<div class="text-center" style="margin: 0px 100px;">
+  <form action="{% url 'search'%}" method="GET">
+    <input type="search" name="query" placeholder="write something here" class="form-control mr-sm-2">
+    &nbsp;
+    <button type="submit" class="btn btn-outline-dark w-100 btn-block p-2">Search</button>
+  </form>
+  <hr style="border: 1px solid crimson; margin: 30px 20px;">
+</div>
+
+<div class="text-center" style="padding-left: 30px;">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Category</th>
+            <th scope="col">Address</th>
+            <th scope="col">Tall</th>
+            <th scope="col">Weight</th>
+            <th scope="col">Date</th>
+            <th scope="col">View</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if record %}
+            {% for record in record %}
+            <tr>
+                <td>{{record.id}}</td>
+                <td>{{record.first_name}}</td>
+                <td>{{record.last_name}}</td>
+                <td>{{record.phone}}</td>
+                <td>{{record.category}}</td>
+                <td>{{record.address}}</td>
+                <td>{{record.tall}}</td>
+                <td>{{record.weight}}</td>
+                <td>{{record.created_at}}</td>
+                <td><a href="{% url 'view_record' record.id %}" class="btn btn-outline-primary btn-sm">View</a></td>
+            </tr>
+            {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="110" class="text-center">
+                  <br><br>
+                  <div class="alert alert-warning" role="alert">
+                    you dont have any records yet!
+                  </div>
+                </td>
+              </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
